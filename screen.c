@@ -19,7 +19,7 @@ void convert2ascii(uint8_t *dst, uint8_t *src, int size) {
      // to rgb2gray
      c = 0.2126*_src[0]+0.7152*_src[1]+0.0722*_src[2];
      c = clen*c/255.0;
-     _dst[i] = charmap[(int)c];
+     *_dst = charmap[(int)c];
   }
 }
 
