@@ -108,6 +108,7 @@ int main(int argc, char **argv) {
       if(frameFinished) {
         sws_scale(pSwsCtx,pFrame->data, pFrame->linesize,0,sh,pPict->data, pPict->linesize);
         ascii_art(pPict);
+        usleep(30000);
     
         // do something with picture
       }
