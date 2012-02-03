@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
 
   pSwsCtx = sws_getContext(sw,sh,pCodecCtx->pix_fmt,TERM_W,TERM_H,PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
   i=0;
-  printf("read stream\n");
+
   while(av_read_frame(pFmtCtx,&packet)>=0) {
     
     if(packet.stream_index == videoStream) {
