@@ -17,7 +17,7 @@ Dependencies
 You will probably need to compile the latest version of ffmpeg
 yourself. For Ubuntu you can find a good guide here:
 
-[build] [build ffmpeg]
+[build] (build ffmpeg)
 
 Be sure you build ffmpeg with `--enable-shared` as otherwise you will
 not be able to link to the ffmpeg libraries.
