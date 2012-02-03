@@ -15,13 +15,11 @@ Dependencies
     * libswscale
 
 You will probably need to compile the latest version of ffmpeg
-yourself. For Ubuntu you can find a good guide here:
-
-[build] (build ffmpeg)
+yourself. For Ubuntu you can find a good guide [here][build].
 
 Be sure you build ffmpeg with `--enable-shared` as otherwise you will
 not be able to link to the ffmpeg libraries.
-Also will add `/usr/local/lib` to your library path, for e.g.
+Also will also have to add `/usr/local/lib` to your library path, for e.g.
 
     export LD_LIBRARY_PATH=/usr/local/lib
 
@@ -34,4 +32,14 @@ Build and play
     make
     ./asciiplayer <video>
 
+Links
+-----
+
++ A really well written tutorial on the FFMpeg API can be found [here][api]. Though it's sligtly out of date, it shows in very detailled fashion how to write a fully functional video player in under 1000 lines of C code, using FFMpeg and SDL. 
+
++ The official [FFMpeg Documention][doc]
+
 [build]: http://ubuntuforums.org/showthread.php?t=786095 "build ffmpeg"
+[api]: http://dranger.com/ffmpeg/ "dranger"
+[doc]: http://ffmpeg.org/documentation.html "doc"
+
