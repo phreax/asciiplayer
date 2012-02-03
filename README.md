@@ -35,7 +35,7 @@ Build and play
 Links
 -----
 
-+ A really well written tutorial on the FFMpeg API can be found [here][api]. Though it's sligtly out of date, it shows in very detailled fashion how to write a fully functional video player in under 1000 lines of C code, using FFMpeg and SDL. 
++ A really well written tutorial on the FFMpeg API can be found [here][api]. Though it's sligtly out of date, it shows in a very detailed fashion, how to write a fully functional video player in under 1000 lines of C code, using FFMpeg and SDL. 
 
 + The official [FFMpeg Documention][doc]
 
