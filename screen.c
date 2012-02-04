@@ -20,7 +20,10 @@
 #include "screen.h"
 
 /* asciiart character map */
-const unsigned char charmap[] = " .:,;+ijtfLGDKW#";
+//const unsigned char charmap[] = " .:,;+ijtfLGDKW#";
+const unsigned char charmap[] = ".:,;+ijtfLGDKW#";
+const unsigned char *mods[]={"1;30m","0;37m","1;37m"};
+const unsigned char reset[]="\033[0m";
 int clen;
 int buf_size;
 int w,h;
@@ -33,7 +36,7 @@ int initialized = 0;
 void init_screen(int _w, int _h) {
    w = _w; h = _h;
    buf_size = w*h+1;
-   clen = 17;
+   clen = 16*3+1;
    sc_buf = malloc(buf_size*sizeof(unsigned char));
 
    printf("buf_size = %d\n",buf_size);
@@ -41,6 +44,19 @@ void init_screen(int _w, int _h) {
    initialized = 1;
 }
 
+/* copy one line */
+/*void convert2ascii(uint8_t *dst, uint8_t *src, int size) {
+  int i;
+  float lum;
+  uint8_t *_dst,*_src;
+  _dst = dst; _src = src; 
+  for(i=0;i<size;i++,_src+=3,_dst++) {
+    lum = 0.2126*_src[0]+0.7152*_src[1]+0.0722*_src[2];
+    lum = (clen-1)*lum/255.0;
+    *_dst = charmap[(int)lum];
+  }
+}
+*/
 /* copy one line */
 void convert2ascii(uint8_t *dst, uint8_t *src, int size) {
   int i;
@@ -52,7 +68,7 @@ void convert2ascii(uint8_t *dst, uint8_t *src, int size) {
     lum = 0.2126*_src[0]+0.7152*_src[1]+0.0722*_src[2];
     /* stretch [0-255] -> [0-16] */
     lum = (clen-1)*lum/255.0;
-    *_dst = charmap[(int)lum];
+    *_dst = (int)lum;
   }
 }
 
@@ -71,14 +87,24 @@ void ascii_art(AVFrame *pFrame) {
   }
   display_buffer();
 }
+void printfc(const char *str,int mod, int fg) {
+    printf("\033[%d;%dm%s%s",mod,fg+30,str,reset);
+}
 
 void display_buffer() {
   int i;
-  unsigned char c;
+  unsigned char x,c,m;
   printf("\x1b[H");
   for(i=1;i<buf_size;i++) {
     /* line end? new line! or pixel */
-    c = i%w == 0 ? 10 : sc_buf[i];
-    putchar(c);
+    if(i%w == 0) putchar(10);
+    else {
+        // decode map
+        int x = sc_buf[i];
+        if(x==0) {putchar(32); continue;}
+        c = x/3;m=x%3;
+        printf("\x1b[%s%c%s",mods[m],charmap[c],reset);
+    }
   }
 }
+
