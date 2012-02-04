@@ -30,7 +30,12 @@ Build and play
 --------------
 
     make
-    ./asciiplayer <video>
+    ./asciiplayer [-g termsize] <video>
+
+Where `termsize` gives the number of columns and lines of your terminal.
+The default size is 128x32 which works great for 16:9 videos. Make sure
+you have you terminal scaled to at least that resolution, or even bigger
+to see the video info on the bottom.
 
 Links
 -----
