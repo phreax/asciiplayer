@@ -11,7 +11,7 @@ TEST_OBJ= player.o screen.o
 all: $(MAIN) 
 
 $(MAIN): $(OBJECTS)
-	$(CC) $(LIBPATH) $(LDFLAGS) $(CFLAGS) $^ -o $@
+	$(CC)  $(CFLAGS) $^ -o $@ $(LIBPATH) $(LDFLAGS)
 
 .c.o:
 	$(CC) $(INCLUDES) $(CFLAGS) -c $< 
